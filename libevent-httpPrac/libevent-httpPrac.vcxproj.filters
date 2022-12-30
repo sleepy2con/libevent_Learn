@@ -30,6 +30,9 @@
     <ClCompile Include="Factory.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="FactoryThread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json">
@@ -47,6 +50,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Factory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryThread.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

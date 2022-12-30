@@ -7,7 +7,7 @@ public:
 	Factory();
 private:
 	void MainLoop();	// eventBase
-
+	void ifDefWin32();
 
 	st_ipAndPort* ipAndPort;
 

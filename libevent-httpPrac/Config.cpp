@@ -15,7 +15,11 @@ void Config::executeLoadConfig(const char* str)
 {
 	cJSON* config = new cJSON;
 	//cout << cJSON_PrintUnformatted(&config);
-	loadConfig(*config,str);
+	if (success != loadConfig(*config, str))
+	{
+		cout << "loadConfig error\n";
+		return;
+	}
 	cJSON* tempJson = nullptr;
 	tempJson = cJSON_GetObjectItem(config, "CommConf");
 	//cout << "\n" << cJSON_Print(tempJson);

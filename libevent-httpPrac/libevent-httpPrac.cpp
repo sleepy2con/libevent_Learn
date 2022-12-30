@@ -28,13 +28,13 @@ void WhatIDoAfterFileChanged(evutil_socket_t, short, void* arg);
 
 int main()
 {
-	struct evhttp* http_server = NULL;
-	short http_port = 8081;
-	char http_addr[20] = "127.0.0.1";
+	//struct evhttp* http_server = NULL;
+	//short http_port = 8081;
+	//char http_addr[20] = "127.0.0.1";
 	//event_base* base = event_init();
 
 	// 监听文件变化事件
-	struct event* ev_WatchFileChanged;
+	//struct event* ev_WatchFileChanged;
 
 	Factory* factory = new Factory();
 

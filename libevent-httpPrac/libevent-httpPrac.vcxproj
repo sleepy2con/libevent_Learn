@@ -139,6 +139,7 @@
     <ClCompile Include="..\..\..\..\wxFiles\WXWork\1688857893385758\Cache\File\2022-11\vsgw-feature-all\src\cJSON.c" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="FactoryThread.cpp" />
     <ClCompile Include="libevent-httpPrac.cpp" />
     <ClCompile Include="pub.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="..\..\..\..\wxFiles\WXWork\1688857893385758\Cache\File\2022-11\vsgw-feature-all\src\cJSON.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="FactoryThread.h" />
     <ClInclude Include="pub.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
