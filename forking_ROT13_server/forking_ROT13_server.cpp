@@ -1,6 +1,6 @@
 ﻿// windows上多进程处理客户端连接的ROT13服务器
-// froking_ROT13_server.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+// 用线程处理每一个socket连接，linux上用fork的进程处理
+// 局限性：进程创建（甚至线程创建）的开销可能非常高，而且扩展性不好，如果处理数千数万个连接，效率不如每个cpu只运行几个线程
 
 #include <iostream>
 #ifdef _WIN32
@@ -97,6 +97,7 @@ void run()
 			std::cout << "accept";
 		else {
 			// 父进程中，fork的返回值是子进程的id，子进程中，fork的返回值是0
+			// 由于recv是阻塞的，所以单独创建一个线程（thread）或者进程（fork）来处理每一个socket连接
 #ifdef __linux__
 			if (fork() == 0)
 			{

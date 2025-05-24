@@ -15,7 +15,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "comm_class", "comm_class\co
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "block_io_connect", "block_io_connect\block_io_connect.vcxproj", "{2B795E8D-9382-488A-86C2-903FBBAA95DD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "froking_ROT13_server", "froking_ROT13_server\froking_ROT13_server.vcxproj", "{9B741CDF-98FE-4001-8BF4-BC629505ACE0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "forking_ROT13_server", "forking_ROT13_server\froking_ROT13_server.vcxproj", "{9B741CDF-98FE-4001-8BF4-BC629505ACE0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "select_based_ROT13_server", "select_based_ROT13_server\select_based_ROT13_server.vcxproj", "{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{9B741CDF-98FE-4001-8BF4-BC629505ACE0}.Release|x64.Build.0 = Release|x64
 		{9B741CDF-98FE-4001-8BF4-BC629505ACE0}.Release|x86.ActiveCfg = Release|Win32
 		{9B741CDF-98FE-4001-8BF4-BC629505ACE0}.Release|x86.Build.0 = Release|Win32
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Debug|x64.ActiveCfg = Debug|x64
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Debug|x64.Build.0 = Debug|x64
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Debug|x86.ActiveCfg = Debug|Win32
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Debug|x86.Build.0 = Debug|Win32
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x64.ActiveCfg = Release|x64
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x64.Build.0 = Release|x64
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x86.ActiveCfg = Release|Win32
+		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

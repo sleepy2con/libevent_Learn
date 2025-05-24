@@ -81,6 +81,9 @@ int main()
 	char sendBuffer[msgSize];
 	while (1)
 	{
+		//accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen); 是用于接收客户端连接请求的系统调用，\
+		// 它从监听 socket 中取出一个已经完成三次握手的连接，并返回一个新的 socket 文件描述符。
+		// addr：传出参数，客户端地址会被填充进这个结构体（如 sockaddr_in
 		SOCKET clientSocket = accept(listenSocket, nullptr, nullptr);
 		if (clientSocket == -1) {
 			std::cout << "Accept clientSocket failed: " << WSAGetLastError() << std::endl;
