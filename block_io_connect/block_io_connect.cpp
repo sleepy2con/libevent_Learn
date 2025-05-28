@@ -26,7 +26,6 @@ int main()
 	struct hostent* h;
 	const char* cp;
 	int fd;
-#include <cstddef> // 添加此头文件以定义ssize_t
 	size_t n_written, remaining;
 	char buf[1024];
 	const char* port = "80";
@@ -41,11 +40,21 @@ int main()
 		std::cout << "getaddrinfo error," << gai_strerror(status);
 		return 1;
 	}
+	bool found_avaliable_IPV4 = 0;
 	for (p = result;p != nullptr;p = p->ai_next)
 	{
-		memcpy(&sin,p->ai_addr,sizeof(struct sockaddr_in));
+		if (p->ai_family == AF_INET)
+		{
+			found_avaliable_IPV4 = 1;
+			memcpy(&sin, p->ai_addr, sizeof(struct sockaddr_in));
+			break;
+		}
 	}
-
+	if (!found_avaliable_IPV4)
+	{
+		std::cerr << "not found avale";
+		return 1;
+	}
 	// 方法已经弃用
 	/*h = gethostbyname(hostname);
 	if (!h)
