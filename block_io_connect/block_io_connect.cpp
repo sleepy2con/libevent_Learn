@@ -1,5 +1,5 @@
 ﻿// block_io_connect.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+//对google.com去建立通信，发送一个http的get请求
 
 #include <iostream>
 #ifdef _WIN32

@@ -2,17 +2,17 @@
 //
 
 #include <iostream>
-#include <event2/event.h>
+//#include <event2/event.h>
 
 int main()
 {
     //std::cout << "Hello World!\n";
-    struct event_base* base = event_base_new();
-    if (!base) {
-        fprintf(stderr, "Could not initialize libevent!\n");
-        return 1;
-    }
-    struct sockaddr_in sin = { 0 };
+    //struct event_base* base = event_base_new();
+    //if (!base) {
+    //    fprintf(stderr, "Could not initialize libevent!\n");
+    //    return 1;
+    //}
+    //struct sockaddr_in sin = { 0 };
 
     return 0;
 }
