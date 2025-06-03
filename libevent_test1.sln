@@ -19,6 +19,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "low_level_ROT13_with_libeve
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "select_based_ROT13_server", "select_based_ROT13_server\select_based_ROT13_server.vcxproj", "{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "simple_ROT13_server_with_libevent", "simple_ROT13_server_with_libevent\simple_ROT13_server_with_libevent.vcxproj", "{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{DF7C1F50-F101-4F50-A0E3-D3152A2D593A}"
+	ProjectSection(SolutionItems) = preProject
+		附加依赖项.txt = 附加依赖项.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -91,6 +98,14 @@ Global
 		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x64.Build.0 = Release|x64
 		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x86.ActiveCfg = Release|Win32
 		{4F98B6FA-02FE-409A-8EF1-7C3549E4F84F}.Release|x86.Build.0 = Release|Win32
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Debug|x64.ActiveCfg = Debug|x64
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Debug|x64.Build.0 = Debug|x64
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Debug|x86.ActiveCfg = Debug|Win32
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Debug|x86.Build.0 = Debug|Win32
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Release|x64.ActiveCfg = Release|x64
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Release|x64.Build.0 = Release|x64
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Release|x86.ActiveCfg = Release|Win32
+		{165ECBE2-1EC4-4892-9E88-0E4F32D298F1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
