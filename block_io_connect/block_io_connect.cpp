@@ -1,5 +1,5 @@
 ﻿// block_io_connect.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//对google.com去建立通信，发送一个http的get请求
+//对google.com去建立tcp通信，发送一个http的get请求
 
 #include <iostream>
 #ifdef _WIN32
@@ -9,6 +9,8 @@
 #pragma comment(lib, "Ws2_32.lib") // 配合ws2tcpip.h；
 #endif
 
+int getDirectAddress(sockaddr_in& sin, const char* hostname);
+
 int main()
 {
 #ifdef _WIN32
@@ -17,65 +19,24 @@ int main()
 	// 调用WSAStartup需要传入Winsock 版本号。
 	WSAStartup(0x0201, &wsa_data);
 #endif
-	const char query[] = "GET / HTTP/1.0\r\n"
-		"Host:www.google.com\r\n"
-		//"Host:www.baidu.com\r\n"
-		"\r\n";
+
 	const char hostname[] = "www.google.com";
 	struct sockaddr_in sin;
-	struct hostent* h;
-	const char* cp;
-	int fd;
-	size_t n_written, remaining;
-	char buf[1024];
-	const char* port = "80";
-	struct addrinfo hints, * result, * p;
-	memset(&hints, 0, sizeof(hints));
-	hints.ai_family = AF_INET;
-	hints.ai_socktype = SOCK_STREAM;
-	// 用于 将主机名（如 "google.com"）和服务名（如 "http"）转换为 addrinfo 结构体链表。
-	int status = getaddrinfo(hostname, port, &hints, &result);
-	if (status > 0)
+
+	if (getDirectAddress(sin, hostname) != 0)
 	{
-		std::cout << "getaddrinfo error," << gai_strerror(status);
+		std::cerr << "getDirectAddress";
 		return 1;
 	}
-	bool found_avaliable_IPV4 = 0;
-	for (p = result;p != nullptr;p = p->ai_next)
-	{
-		if (p->ai_family == AF_INET)
-		{
-			found_avaliable_IPV4 = 1;
-			memcpy(&sin, p->ai_addr, sizeof(struct sockaddr_in));
-			break;
-		}
-	}
-	if (!found_avaliable_IPV4)
-	{
-		std::cerr << "not found avale";
-		return 1;
-	}
-	// 方法已经弃用
-	/*h = gethostbyname(hostname);
-	if (!h)
-	{
-		std::cout << "找不到" << hostname << " ,错误是" << WSAGetLastError();
-		return 1;
-	}
-	if (h->h_addrtype != AF_INET)
-	{
-		std::cerr << "no ipv6 support";
-		return 1;
-	}*/
-	fd = socket(AF_INET, SOCK_STREAM, 0);
+
+	int fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (fd < 0)
 	{
 		std::cerr << "socket";
 		return 1;
 	}
 	// 链接远程主机
-	sin.sin_family = AF_INET;
-	sin.sin_port = htons(80);
+
 	//sin.sin_addr = *(struct in_addr*)h->h_addr;
 	if (connect(fd, (struct sockaddr*)&sin, sizeof(sin)))
 	{
@@ -83,8 +44,12 @@ int main()
 		closesocket(fd);
 		return 1;
 	}
-	cp = query;
-	remaining = strlen(query);
+
+	const char query[] = "GET / HTTP/1.0\r\n"
+		"Host:www.google.com\r\n"
+		"\r\n";
+	const char* cp = query;
+	size_t n_written, remaining = strlen(query);
 	// 确保cp的内容被发完
 	while (remaining)
 	{
@@ -96,11 +61,14 @@ int main()
 		if (n_written <= 0)
 		{
 			std::cerr << "send";
+			closesocket(fd);
 			return 1;
 		}
 		remaining -= n_written;
 		cp += n_written;
 	}
+
+	char buf[1024];
 	// 获的回复
 	while (1)
 	{
@@ -118,3 +86,37 @@ int main()
 	return 0;
 }
 
+int getDirectAddress(sockaddr_in& sin, const char* hostname)
+{
+	struct addrinfo hints, * result, * p;
+	memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_INET;
+	hints.ai_socktype = SOCK_STREAM;
+	const char* port = "80";
+	// 用于 将主机名（如 "google.com"）和服务名（如 "http"）转换为 addrinfo 结构体链表。
+	int status = getaddrinfo(hostname, port, &hints, &result);
+	if (status > 0)
+	{
+		std::cout << "getaddrinfo error," << gai_strerror(status);
+		return 1;
+	}
+	bool found_avaliable_IPV4 = 0;
+	for (p = result; p != nullptr; p = p->ai_next)
+	{
+		if (p->ai_family == AF_INET)
+		{
+			found_avaliable_IPV4 = 1;
+			memcpy(&sin, p->ai_addr, sizeof(struct sockaddr_in));
+			break;
+		}
+	}
+	//char ip_str[INET_ADDRSTRLEN];  // 存储 IPv4 字符串的缓冲区
+	//const char* tempPtr = inet_ntop(AF_INET, &(sin.sin_addr), ip_str, INET_ADDRSTRLEN);
+	//std::cout << "\ndirect address: " << ip_str << "\n"; //  142.250.31.106
+	if (!found_avaliable_IPV4)
+	{
+		std::cerr << "not found avale";
+		return 1;
+	}
+	return 0;
+}

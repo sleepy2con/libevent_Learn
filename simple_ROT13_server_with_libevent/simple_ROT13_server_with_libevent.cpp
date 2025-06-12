@@ -51,6 +51,12 @@ run(void) {
 	sin.sin_port = htons(40713);
 	listener = socket(AF_INET, SOCK_STREAM, 0);
 	evutil_make_socket_nonblocking(listener);
+	int one = 1;
+#ifndef WIN32{
+	setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one);
+	}
+
+#endif // !WIN32{}
 
 
 }
